@@ -44,32 +44,38 @@
                 </div>
             </div>
 
-            <div class="stats">
-                <div class="stat-card">
-                    <span class="stat-value" id="selectedCredits">0</span>
-                    <span class="stat-label">Credits</span>
-                </div>
-                <div class="stat-card">
-                    <span class="stat-value" id="selectedCourses">0</span>
-                    <span class="stat-label">Courses</span>
-                </div>
-                <div class="stat-card">
-                    <span class="stat-value" id="remainingCredits">14</span>
-                    <span class="stat-label">Credits Left</span>
-                </div>
-                <div class="stat-card">
-                    <span class="stat-value" id="remainingCourses">8</span>
-                    <span class="stat-label">Courses Left</span>
-                </div>
-            </div>
+<div class="stats">
+    <div class="stat-card">
+        <span class="stat-value" id="selectedCredits">0</span>
+        <span class="stat-label">Credits</span>
+    </div>
+    <div class="stat-card">
+        <span class="stat-value" id="selectedCourses">0</span>
+        <span class="stat-label">Courses</span>
+    </div>
+    <div class="stat-card">
+        <span class="stat-value" id="remainingCredits">14</span>
+        <span class="stat-label">Credits Left</span>
+    </div>
+    <div class="stat-card">
+        <span class="stat-value" id="remainingCourses">8</span>
+        <span class="stat-label">Courses Left</span>
+    </div>
+    <div class="cost-calculator">
+        <span class="cost-label">Estimated Cost</span>
+        <span class="cost-value" id="semesterCost">৳0</span>
+        <span class="cost-formula">((Credits × 6500) + 9500)</span>
+    </div>
+</div>
 
-            <div class="search-container">
-                <div class="search-wrapper">
-                    <input type="text" id="searchInput" placeholder="Search all courses...">
-                </div>
-                <button id="clearAll" class="clear-button">Clear All</button>
-            </div>
+<div class="search-section">
+    <div class="search-container">
+        <div class="search-wrapper">
+            <input type="text" id="searchInput" placeholder="Search all courses...">
         </div>
+    </div>
+    <button id="clearAll" class="clear-button">Clear All</button>
+</div>
 
         <div class="main-content">
             <div class="selected-courses-section">
