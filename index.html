@@ -1,0 +1,122 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>NSU CSE Semester Planner</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="./src/style.css">
+    <link rel="icon" href="src/North_South_University_Monogram.svg" type="image/svg+xml">
+</head>
+<body>
+    <div class="container">
+        <header>
+            <div class="header-content">
+                <div class="logo-container">
+                    <div class="logo-background">
+                        <img src="src/North_South_University_Monogram.svg" alt="NSU Logo" class="nsu-logo">
+                    </div>
+                    <div class="header-text">
+                        <h1>PlanIt<span class="highlight">NSU</span></h1>
+                        <p class="subtitle">CSE Semester Course Planner</p>
+                        <p class="university-name">North South University</p>
+                    </div>
+                </div>
+                <div class="header-actions">
+                    <button id="themeToggle" class="theme-button">
+                        <span class="theme-icon">🌙</span>
+                    </button>
+                </div>
+            </div>
+        </header>
+
+        <div class="controls">
+            <div class="limit-controls">
+                <div class="limit-input">
+                    <label for="maxCredits">Max Credits:</label>
+                    <input type="number" id="maxCredits" min="1" value="14">
+                </div>
+                <div class="limit-input">
+                    <label for="maxCourses">Max Courses:</label>
+                    <input type="number" id="maxCourses" min="1" value="8">
+                </div>
+            </div>
+
+            <div class="stats">
+                <div class="stat-card">
+                    <span class="stat-value" id="selectedCredits">0</span>
+                    <span class="stat-label">Credits</span>
+                </div>
+                <div class="stat-card">
+                    <span class="stat-value" id="selectedCourses">0</span>
+                    <span class="stat-label">Courses</span>
+                </div>
+                <div class="stat-card">
+                    <span class="stat-value" id="remainingCredits">14</span>
+                    <span class="stat-label">Credits Left</span>
+                </div>
+                <div class="stat-card">
+                    <span class="stat-value" id="remainingCourses">8</span>
+                    <span class="stat-label">Courses Left</span>
+                </div>
+            </div>
+
+            <div class="search-container">
+                <div class="search-wrapper">
+                    <input type="text" id="searchInput" placeholder="Search all courses...">
+                </div>
+                <button id="clearAll" class="clear-button">Clear All</button>
+            </div>
+        </div>
+
+        <div class="main-content">
+            <div class="selected-courses-section">
+                <div class="section-header">
+                    <h2>Selected Courses</h2>
+                    <span class="course-count" id="selectedCount">0 courses</span>
+                </div>
+                <div id="selectedCoursesList" class="courses-grid"></div>
+            </div>
+
+            <div class="available-courses-section">
+                <div class="section-header">
+                    <h2>Available Courses</h2>
+                    <div class="filter-controls">
+                        <select id="categoryFilter" class="filter-dropdown">
+                            <option value="">All Categories</option>
+                            <option value="CSE Core">CSE Core</option>
+                            <option value="SEPS Core">SEPS Core</option>
+                            <option value="University Core">University Core</option>
+                            <option value="CSE Major Capstone Design">Capstone Design</option>
+                            <option value="CSE Specialized Elective">Specialized Electives</option>
+                            <option value="Open Elective">Open Electives</option>
+                            <option value="Algorithms and Computation Trail">Algorithms Trail</option>
+                            <option value="Software Engineering Trail">Software Engineering</option>
+                            <option value="Networks Trail">Networks</option>
+                            <option value="Computer Architecture and VLSI Trail">Architecture & VLSI</option>
+                            <option value="Artificial Intelligence Trail">AI</option>
+                            <option value="Bioinformatics Trail">Bioinformatics</option>
+                        </select>
+                        <select id="typeFilter" class="filter-dropdown">
+                            <option value="">All Types</option>
+                            <option value="theory">Theory</option>
+                            <option value="lab">Lab</option>
+                        </select>
+                    </div>
+                </div>
+                <div id="availableCoursesList" class="courses-grid"></div>
+            </div>
+        </div>
+
+        <footer class="app-footer">
+            <div class="footer-content">
+                <p>Made with 🤖 by <a href="https://github.com/ashik-maybe" target="_blank">@ashik-maybe</a> • <a href="https://github.com/ashik-maybe/" target="_blank">Star on GitHub</a></p>
+            </div>
+        </footer>
+    </div>
+
+    <script type="module" src="./src/main.js"></script>
+</body>
+</html>

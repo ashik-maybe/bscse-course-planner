@@ -1,0 +1,830 @@
+[
+  {
+    "code": "CSE499A",
+    "name": "Senior Design I",
+    "credits": 1.5,
+    "type": "theory",
+    "prerequisites": ["100 Credits"],
+    "corequisites": [],
+    "category": "CSE Major Capstone Design"
+  },
+  {
+    "code": "CSE299",
+    "name": "Junior Design",
+    "credits": 1,
+    "type": "theory",
+    "prerequisites": ["60 Credits"],
+    "corequisites": [],
+    "category": "CSE Major Capstone Design"
+  },
+  {
+    "code": "CSE173",
+    "name": "Discrete Mathematics",
+    "credits": 3,
+    "type": "theory",
+    "prerequisites": ["CSE115"],
+    "corequisites": [],
+    "category": "CSE Core"
+  },
+  {
+    "code": "CSE215",
+    "name": "Programming Language II",
+    "credits": 3,
+    "type": "theory",
+    "prerequisites": ["CSE173"],
+    "corequisites": ["CSE215L"],
+    "category": "CSE Core"
+  },
+  {
+    "code": "CSE215L",
+    "name": "Programming Language II Lab",
+    "credits": 1,
+    "type": "lab",
+    "prerequisites": ["CSE173"],
+    "corequisites": ["CSE215"],
+    "category": "CSE Core"
+  },
+  {
+    "code": "CSE231",
+    "name": "Digital Logic Design",
+    "credits": 3,
+    "type": "theory",
+    "prerequisites": ["CSE173"],
+    "corequisites": ["CSE231L"],
+    "category": "CSE Core"
+  },
+  {
+    "code": "CSE231L",
+    "name": "Digital Logic Design Lab",
+    "credits": 0,
+    "type": "lab",
+    "prerequisites": ["CSE173"],
+    "corequisites": ["CSE231"],
+    "category": "CSE Core"
+  },
+  {
+    "code": "CSE225",
+    "name": "Data Structures and Algorithm",
+    "credits": 3,
+    "type": "theory",
+    "prerequisites": ["CSE215"],
+    "corequisites": ["CSE225L"],
+    "category": "CSE Core"
+  },
+  {
+    "code": "CSE225L",
+    "name": "Data Structures and Algorithm Lab",
+    "credits": 0,
+    "type": "lab",
+    "prerequisites": ["CSE215"],
+    "corequisites": ["CSE225"],
+    "category": "CSE Core"
+  },
+  {
+    "code": "CSE311",
+    "name": "Database Systems",
+    "credits": 3,
+    "type": "theory",
+    "prerequisites": ["CSE225"],
+    "corequisites": ["CSE311L"],
+    "category": "CSE Core"
+  },
+  {
+    "code": "CSE311L",
+    "name": "Database Systems Lab",
+    "credits": 1,
+    "type": "lab",
+    "prerequisites": ["CSE225"],
+    "corequisites": ["CSE311"],
+    "category": "CSE Core"
+  },
+  {
+    "code": "CSE373",
+    "name": "Design and Analysis of Algorithm",
+    "credits": 3,
+    "type": "theory",
+    "prerequisites": ["CSE225", "MAT361"],
+    "corequisites": [],
+    "category": "CSE Core"
+  },
+  {
+    "code": "CSE332",
+    "name": "Computer Organization and Architecture",
+    "credits": 3,
+    "type": "theory",
+    "prerequisites": ["CSE231"],
+    "corequisites": [],
+    "category": "CSE Core"
+  },
+  {
+    "code": "CSE327",
+    "name": "Software Engineering",
+    "credits": 3,
+    "type": "theory",
+    "prerequisites": ["CSE311"],
+    "corequisites": [],
+    "category": "CSE Core"
+  },
+  {
+    "code": "CSE331",
+    "name": "Microprocessor Interfacing and Embedded System",
+    "credits": 3,
+    "type": "theory",
+    "prerequisites": ["CSE323"],
+    "corequisites": ["CSE331L"],
+    "category": "CSE Core"
+  },
+  {
+    "code": "CSE331L",
+    "name": "Microprocessor Interfacing and Embedded System Lab",
+    "credits": 0,
+    "type": "lab",
+    "prerequisites": ["CSE323"],
+    "corequisites": ["CSE331"],
+    "category": "CSE Core"
+  },
+  {
+    "code": "CSE425",
+    "name": "Concepts of Programming Language",
+    "credits": 3,
+    "type": "theory",
+    "prerequisites": ["CSE327"],
+    "corequisites": [],
+    "category": "CSE Core"
+  },
+  {
+    "code": "CSE323",
+    "name": "Operating Systems Design",
+    "credits": 3,
+    "type": "theory",
+    "prerequisites": ["CSE332"],
+    "corequisites": [],
+    "category": "CSE Core"
+  },
+  {
+    "code": "EEE111",
+    "name": "Analog Electronics I",
+    "credits": 3,
+    "type": "theory",
+    "prerequisites": ["EEE141"],
+    "corequisites": ["EEE111L"],
+    "category": "CSE Core"
+  },
+  {
+    "code": "EEE111L",
+    "name": "Analog Electronics I Lab",
+    "credits": 1,
+    "type": "lab",
+    "prerequisites": ["EEE141"],
+    "corequisites": ["EEE111"],
+    "category": "CSE Core"
+  },
+  {
+    "code": "ENG103",
+    "name": "Intermediate Composition",
+    "credits": 3,
+    "type": "theory",
+    "prerequisites": ["ENG102"],
+    "corequisites": [],
+    "category": "University Core"
+  },
+  {
+    "code": "BEN205",
+    "name": "Bengali Language & Literature",
+    "credits": 3,
+    "type": "theory",
+    "prerequisites": ["ENG103"],
+    "corequisites": [],
+    "category": "University Core"
+  },
+  {
+    "code": "MAT125",
+    "name": "Linear Algebra",
+    "credits": 3,
+    "type": "theory",
+    "prerequisites": ["MAT116"],
+    "corequisites": [],
+    "category": "SEPS Core"
+  },
+  {
+    "code": "MAT120",
+    "name": "Calculus I",
+    "credits": 3,
+    "type": "theory",
+    "prerequisites": ["MAT116"],
+    "corequisites": [],
+    "category": "SEPS Core"
+  },
+  {
+    "code": "MAT130",
+    "name": "Calculus II",
+    "credits": 3,
+    "type": "theory",
+    "prerequisites": ["MAT120"],
+    "corequisites": [],
+    "category": "SEPS Core"
+  },
+  {
+    "code": "PHY107",
+    "name": "Physics I",
+    "credits": 3,
+    "type": "theory",
+    "prerequisites": ["MAT120"],
+    "corequisites": [],
+    "category": "SEPS Core"
+  },
+  {
+    "code": "PHY107L",
+    "name": "Physics I Lab",
+    "credits": 1,
+    "type": "lab",
+    "prerequisites": ["MAT120"],
+    "corequisites": [],
+    "category": "SEPS Core"
+  },
+  {
+    "code": "MAT250",
+    "name": "Calculus III",
+    "credits": 3,
+    "type": "theory",
+    "prerequisites": ["MAT130"],
+    "corequisites": [],
+    "category": "SEPS Core"
+  },
+  {
+    "code": "PHY108",
+    "name": "Physics II",
+    "credits": 3,
+    "type": "theory",
+    "prerequisites": ["MAT130", "PHY107"],
+    "corequisites": [],
+    "category": "SEPS Core"
+  },
+  {
+    "code": "PHY108L",
+    "name": "Physics II Lab",
+    "credits": 1,
+    "type": "lab",
+    "prerequisites": ["MAT130", "PHY107"],
+    "corequisites": [],
+    "category": "SEPS Core"
+  },
+  {
+    "code": "MAT361",
+    "name": "Probability and Statistics",
+    "credits": 3,
+    "type": "theory",
+    "prerequisites": ["MAT250"],
+    "corequisites": [],
+    "category": "SEPS Core"
+  },
+  {
+    "code": "MAT350",
+    "name": "Engineering Mathematics",
+    "credits": 3,
+    "type": "theory",
+    "prerequisites": ["MAT250"],
+    "corequisites": [],
+    "category": "SEPS Core"
+  },
+  {
+    "code": "CHE101",
+    "name": "Chemistry I",
+    "credits": 3,
+    "type": "theory",
+    "prerequisites": ["MAT350"],
+    "corequisites": [],
+    "category": "SEPS Core"
+  },
+  {
+    "code": "CHE101L",
+    "name": "Chemistry I Lab",
+    "credits": 1,
+    "type": "lab",
+    "prerequisites": ["MAT350"],
+    "corequisites": [],
+    "category": "SEPS Core"
+  },
+  {
+    "code": "EEE141",
+    "name": "Electric Circuit I",
+    "credits": 3,
+    "type": "theory",
+    "prerequisites": ["PHY107", "MAT120"],
+    "corequisites": ["EEE141L"],
+    "category": "CSE Core"
+  },
+  {
+    "code": "EEE141L",
+    "name": "Electric Circuit I Lab",
+    "credits": 1,
+    "type": "lab",
+    "prerequisites": ["PHY107", "MAT120"],
+    "corequisites": ["EEE141"],
+    "category": "CSE Core"
+  },
+  {
+    "code": "CSE499B",
+    "name": "Senior Design II",
+    "credits": 1.5,
+    "type": "theory",
+    "prerequisites": [],
+    "corequisites": [],
+    "category": "CSE Major Capstone Design"
+  },
+  {
+    "code": "BIO103",
+    "name": "Biology I",
+    "credits": 3,
+    "type": "theory",
+    "prerequisites": [],
+    "corequisites": [],
+    "category": "University Core"
+  },
+  {
+    "code": "BIO103L",
+    "name": "Biology I Lab",
+    "credits": 0,
+    "type": "lab",
+    "prerequisites": [],
+    "corequisites": [],
+    "category": "University Core"
+  },
+  {
+    "code": "CSE115",
+    "name": "Programming Language I",
+    "credits": 3,
+    "type": "theory",
+    "prerequisites": [],
+    "corequisites": ["CSE115L"],
+    "category": "SEPS Core"
+  },
+  {
+    "code": "CSE115L",
+    "name": "Programming Language I Lab",
+    "credits": 1,
+    "type": "lab",
+    "prerequisites": [],
+    "corequisites": ["CSE115"],
+    "category": "SEPS Core"
+  },
+  {
+    "code": "CSE498R",
+    "name": "Intern / Co-op / Directed Research",
+    "credits": 1,
+    "type": "theory",
+    "prerequisites": [],
+    "corequisites": [],
+    "category": "Internship / Co-op"
+  },
+  {
+    "code": "ECO101",
+    "name": "Introduction to Microeconomics",
+    "credits": 3,
+    "type": "theory",
+    "prerequisites": [],
+    "corequisites": [],
+    "category": "University Core"
+  },
+  {
+    "code": "EEE154",
+    "name": "Engineering Drawing",
+    "credits": 1,
+    "type": "theory",
+    "prerequisites": [],
+    "corequisites": [],
+    "category": "SEPS Core"
+  },
+  {
+    "code": "EEE452",
+    "name": "Engineering Economics",
+    "credits": 3,
+    "type": "theory",
+    "prerequisites": [],
+    "corequisites": [],
+    "category": "SEPS Core"
+  },
+  {
+    "code": "ENG111",
+    "name": "Public Speaking",
+    "credits": 3,
+    "type": "theory",
+    "prerequisites": [],
+    "corequisites": [],
+    "category": "University Core"
+  },
+  {
+    "code": "HIS102",
+    "name": "Introduction to World Civilization",
+    "credits": 3,
+    "type": "theory",
+    "prerequisites": [],
+    "corequisites": [],
+    "category": "University Core"
+  },
+  {
+    "code": "HIS103",
+    "name": "Emergence of Bangladesh",
+    "credits": 3,
+    "type": "theory",
+    "prerequisites": [],
+    "corequisites": [],
+    "category": "University Core"
+  },
+  {
+    "code": "MAT116",
+    "name": "Pre-Calculus",
+    "credits": 0,
+    "type": "theory",
+    "prerequisites": [],
+    "corequisites": [],
+    "category": "SEPS Core"
+  },
+  {
+    "code": "OPEN ELECT",
+    "name": "Open Elective",
+    "credits": 3,
+    "type": "theory",
+    "prerequisites": [],
+    "corequisites": [],
+    "category": "Open Elective"
+  },
+  {
+    "code": "PHI104",
+    "name": "Introduction to Ethics",
+    "credits": 3,
+    "type": "theory",
+    "prerequisites": [],
+    "corequisites": [],
+    "category": "University Core"
+  },
+  {
+    "code": "POL101",
+    "name": "Introduction to Political Science",
+    "credits": 3,
+    "type": "theory",
+    "prerequisites": [],
+    "corequisites": [],
+    "category": "University Core"
+  },
+  {
+    "code": "SOC101",
+    "name": "Introduction to Sociology",
+    "credits": 3,
+    "type": "theory",
+    "prerequisites": [],
+    "corequisites": [],
+    "category": "University Core"
+  },
+  {
+    "code": "CSE401",
+    "name": "Advanced Programming Techniques",
+    "credits": 3,
+    "type": "theory",
+    "prerequisites": [],
+    "corequisites": [],
+    "category": "Algorithms and Computation Trail"
+  },
+  {
+    "code": "CSE417",
+    "name": "Numerical Methods",
+    "credits": 3,
+    "type": "theory",
+    "prerequisites": [],
+    "corequisites": [],
+    "category": "Algorithms and Computation Trail"
+  },
+  {
+    "code": "CSE418",
+    "name": "Computer Graphics",
+    "credits": 3,
+    "type": "theory",
+    "prerequisites": [],
+    "corequisites": [],
+    "category": "Algorithms and Computation Trail"
+  },
+  {
+    "code": "CSE426",
+    "name": "Compiler Constructions",
+    "credits": 3,
+    "type": "theory",
+    "prerequisites": [],
+    "corequisites": [],
+    "category": "Algorithms and Computation Trail"
+  },
+  {
+    "code": "CSE473",
+    "name": "Theory of Computation",
+    "credits": 3,
+    "type": "theory",
+    "prerequisites": [],
+    "corequisites": [],
+    "category": "Algorithms and Computation Trail"
+  },
+  {
+    "code": "CSE491",
+    "name": "Special Topics",
+    "credits": 3,
+    "type": "theory",
+    "prerequisites": [],
+    "corequisites": [],
+    "category": "Algorithms and Computation Trail"
+  },
+  {
+    "code": "CSE411",
+    "name": "Advanced Database Systems",
+    "credits": 3,
+    "type": "theory",
+    "prerequisites": [],
+    "corequisites": [],
+    "category": "Software Engineering Trail"
+  },
+  {
+    "code": "CSE427",
+    "name": "Software Quality Assurance & Testing",
+    "credits": 3,
+    "type": "theory",
+    "prerequisites": [],
+    "corequisites": [],
+    "category": "Software Engineering Trail"
+  },
+  {
+    "code": "CSE428",
+    "name": "Software Process Management",
+    "credits": 3,
+    "type": "theory",
+    "prerequisites": [],
+    "corequisites": [],
+    "category": "Software Engineering Trail"
+  },
+  {
+    "code": "CSE429",
+    "name": "Software System Architecture",
+    "credits": 3,
+    "type": "theory",
+    "prerequisites": [],
+    "corequisites": [],
+    "category": "Software Engineering Trail"
+  },
+  {
+    "code": "CSE492",
+    "name": "Special Topics",
+    "credits": 3,
+    "type": "theory",
+    "prerequisites": [],
+    "corequisites": [],
+    "category": "Software Engineering Trail"
+  },
+  {
+    "code": "CSE422",
+    "name": "Modelling and Simulation",
+    "credits": 3,
+    "type": "theory",
+    "prerequisites": [],
+    "corequisites": [],
+    "category": "Networks Trail"
+  },
+  {
+    "code": "CSE438",
+    "name": "Data Communication & Network",
+    "credits": 3,
+    "type": "theory",
+    "prerequisites": [],
+    "corequisites": [],
+    "category": "Networks Trail"
+  },
+  {
+    "code": "CSE482",
+    "name": "Internet and Web Technology",
+    "credits": 3,
+    "type": "theory",
+    "prerequisites": [],
+    "corequisites": [],
+    "category": "Networks Trail"
+  },
+  {
+    "code": "CSE485",
+    "name": "Digital Signal Processing",
+    "credits": 3,
+    "type": "theory",
+    "prerequisites": [],
+    "corequisites": [],
+    "category": "Networks Trail"
+  },
+  {
+    "code": "CSE486",
+    "name": "Mobile and Wireless Application Development",
+    "credits": 3,
+    "type": "theory",
+    "prerequisites": [],
+    "corequisites": [],
+    "category": "Networks Trail"
+  },
+  {
+    "code": "CSE493",
+    "name": "Special Topics",
+    "credits": 3,
+    "type": "theory",
+    "prerequisites": [],
+    "corequisites": [],
+    "category": "Networks Trail"
+  },
+  {
+    "code": "CSE433",
+    "name": "Advanced Architecture",
+    "credits": 3,
+    "type": "theory",
+    "prerequisites": [],
+    "corequisites": [],
+    "category": "Computer Architecture and VLSI Trail"
+  },
+  {
+    "code": "CSE435",
+    "name": "Introduction to VLSI Design",
+    "credits": 3,
+    "type": "theory",
+    "prerequisites": [],
+    "corequisites": [],
+    "category": "Computer Architecture and VLSI Trail"
+  },
+  {
+    "code": "CSE413",
+    "name": "Verilog HDL: Modelling, Simulation, and Synthesis",
+    "credits": 3,
+    "type": "theory",
+    "prerequisites": [],
+    "corequisites": [],
+    "category": "Computer Architecture and VLSI Trail"
+  },
+  {
+    "code": "CSE414",
+    "name": "Advanced Chip Design Methodology and Optimization using HDL",
+    "credits": 3,
+    "type": "theory",
+    "prerequisites": [],
+    "corequisites": [],
+    "category": "Computer Architecture and VLSI Trail"
+  },
+  {
+    "code": "CSE415",
+    "name": "VLSI Chip Testing",
+    "credits": 3,
+    "type": "theory",
+    "prerequisites": [],
+    "corequisites": [],
+    "category": "Computer Architecture and VLSI Trail"
+  },
+  {
+    "code": "CSE494",
+    "name": "Special Topics",
+    "credits": 3,
+    "type": "theory",
+    "prerequisites": [],
+    "corequisites": [],
+    "category": "Computer Architecture and VLSI Trail"
+  },
+  {
+    "code": "CSE440",
+    "name": "Artificial Intelligence",
+    "credits": 3,
+    "type": "theory",
+    "prerequisites": [],
+    "corequisites": [],
+    "category": "Artificial Intelligence Trail"
+  },
+  {
+    "code": "CSE445",
+    "name": "Machine Learning",
+    "credits": 3,
+    "type": "theory",
+    "prerequisites": [],
+    "corequisites": [],
+    "category": "Artificial Intelligence Trail"
+  },
+  {
+    "code": "CSE465",
+    "name": "Pattern Recognition and Neural Network",
+    "credits": 3,
+    "type": "theory",
+    "prerequisites": [],
+    "corequisites": [],
+    "category": "Artificial Intelligence Trail"
+  },
+  {
+    "code": "CSE467",
+    "name": "Digital Image Processing",
+    "credits": 3,
+    "type": "theory",
+    "prerequisites": [],
+    "corequisites": [],
+    "category": "Artificial Intelligence Trail"
+  },
+  {
+    "code": "CSE470",
+    "name": "Theory of Fuzzy Systems",
+    "credits": 3,
+    "type": "theory",
+    "prerequisites": [],
+    "corequisites": [],
+    "category": "Artificial Intelligence Trail"
+  },
+  {
+    "code": "CSE419",
+    "name": "Data Mining",
+    "credits": 3,
+    "type": "theory",
+    "prerequisites": [],
+    "corequisites": [],
+    "category": "Artificial Intelligence Trail"
+  },
+  {
+    "code": "CSE446",
+    "name": "Introductions to Bioinformatics",
+    "credits": 3,
+    "type": "theory",
+    "prerequisites": [],
+    "corequisites": [],
+    "category": "Bioinformatics Trail"
+  },
+  {
+    "code": "CSE447",
+    "name": "Molecular Biology",
+    "credits": 3,
+    "type": "theory",
+    "prerequisites": [],
+    "corequisites": [],
+    "category": "Bioinformatics Trail"
+  },
+  {
+    "code": "CSE448",
+    "name": "Genome Sequence & Analysis",
+    "credits": 3,
+    "type": "theory",
+    "prerequisites": [],
+    "corequisites": [],
+    "category": "Bioinformatics Trail"
+  },
+  {
+    "code": "CSE449",
+    "name": "Structural Bioinformatics",
+    "credits": 3,
+    "type": "theory",
+    "prerequisites": [],
+    "corequisites": [],
+    "category": "Bioinformatics Trail"
+  },
+  {
+    "code": "CSE442",
+    "name": "Micro Array Bioinformatics",
+    "credits": 3,
+    "type": "theory",
+    "prerequisites": [],
+    "corequisites": [],
+    "category": "Bioinformatics Trail"
+  },
+  {
+    "code": "CSE496",
+    "name": "Special Topics",
+    "credits": 3,
+    "type": "theory",
+    "prerequisites": [],
+    "corequisites": [],
+    "category": "Bioinformatics Trail"
+  },
+ {
+    "code": "POL104",
+    "name": "Introduction to Governance",
+    "credits": 3,
+    "type": "theory",
+    "prerequisites": [],
+    "corequisites": [],
+    "category": "University Core"
+  },
+  {
+    "code": "ECO104",
+    "name": "Introduction to Macroeconomics",
+    "credits": 3,
+    "type": "theory",
+    "prerequisites": [],
+    "corequisites": [],
+    "category": "University Core"
+  },
+  {
+    "code": "ANT101",
+    "name": "Introduction to Anthropology",
+    "credits": 3,
+    "type": "theory",
+    "prerequisites": [],
+    "corequisites": [],
+    "category": "University Core"
+  },
+  {
+    "code": "ENV203",
+    "name": "Introduction to Bangladesh Geography",
+    "credits": 3,
+    "type": "theory",
+    "prerequisites": [],
+    "corequisites": [],
+    "category": "University Core"
+  }
+]
