@@ -344,7 +344,7 @@
   {
     "code": "BIO103L",
     "name": "Biology I Lab",
-    "credits": 0,
+    "credits": 1,
     "type": "lab",
     "prerequisites": [],
     "corequisites": [],
@@ -371,7 +371,7 @@
   {
     "code": "CSE498R",
     "name": "Intern / Co-op / Directed Research",
-    "credits": 1,
+    "credits": 0,
     "type": "theory",
     "prerequisites": [],
     "corequisites": [],
@@ -821,6 +821,24 @@
   {
     "code": "ENV203",
     "name": "Introduction to Bangladesh Geography",
+    "credits": 3,
+    "type": "theory",
+    "prerequisites": [],
+    "corequisites": [],
+    "category": "University Core"
+  },
+  {
+    "code": "ENG115",
+    "name": "Literature",
+    "credits": 3,
+    "type": "theory",
+    "prerequisites": [],
+    "corequisites": [],
+    "category": "University Core"
+  },
+  {
+    "code": "HIS101",
+    "name": "Bangladesh Culture and Heritage",
     "credits": 3,
     "type": "theory",
     "prerequisites": [],
