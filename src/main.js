@@ -1,7 +1,19 @@
-import coursesData from './data/courses.json' assert { type: 'json' };
+// Load courses data using fetch instead of import assertion
+async function loadCoursesData() {
+    try {
+        const response = await fetch('./src/data/courses.json');
+        if (!response.ok) {
+            throw new Error(`HTTP error! status: ${response.status}`);
+        }
+        return await response.json();
+    } catch (error) {
+        console.error('Error loading courses ', error);
+        return []; // Return empty array if loading fails
+    }
+}
 
 class CoursePlanner {
-    constructor() {
+    constructor(coursesData) {
         this.courses = coursesData;
         this.selectedCourses = new Set();
         this.maxCredits = 14;
@@ -566,6 +578,18 @@ class CoursePlanner {
 }
 
 // Initialize the app when DOM is loaded
-document.addEventListener('DOMContentLoaded', () => {
-    new CoursePlanner();
+document.addEventListener('DOMContentLoaded', async () => {
+    const coursesData = await loadCoursesData();
+    if (coursesData && coursesData.length > 0) {
+        new CoursePlanner(coursesData);
+    } else {
+        console.error('Failed to load course data');
+        // Show error message to user
+        document.body.innerHTML = `
+            <div style="text-align: center; padding: 50px; font-family: Arial, sans-serif;">
+                <h1>Error Loading Course Data</h1>
+                <p>Unable to load course information. Please check your internet connection and try again.</p>
+            </div>
+        `;
+    }
 });
