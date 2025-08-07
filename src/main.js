@@ -54,6 +54,7 @@ class CoursePlanner {
         this.typeFilterElement = document.getElementById('typeFilter');
         this.themeToggle = document.getElementById('themeToggle');
         this.selectedCountElement = document.getElementById('selectedCount');
+        this.semesterCostElement = document.getElementById('semesterCost'); // Cost calculator element
     }
 
     bindEvents() {
@@ -138,6 +139,10 @@ class CoursePlanner {
         this.remainingCreditsElement.textContent = remainingCredits;
         this.remainingCoursesElement.textContent = remainingCourses;
         this.selectedCountElement.textContent = `${selectedCourses} course${selectedCourses !== 1 ? 's' : ''}`;
+
+        // Update cost calculator
+        const semesterCost = (selectedCredits * 6500) + 2500 + 3000 + 1500 + 2500; // = (Credits × 6500) + 9500
+        this.semesterCostElement.textContent = `৳${semesterCost.toLocaleString()}`;
 
         // Update warning states
         if (remainingCredits <= 3) {
