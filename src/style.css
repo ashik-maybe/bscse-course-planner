@@ -209,33 +209,38 @@ header {
 
 .limit-controls {
     display: flex;
-    gap: 25px;
+    justify-content: center; /* Center the items horizontally */
+    align-items: center; /* Align items vertically */
+    gap: 25px; /* Space between items */
     margin-bottom: 25px;
     flex-wrap: wrap;
 }
 
 .limit-input {
     display: flex;
-    flex-direction: column;
-    gap: 8px;
+    align-items: center; /* Align items vertically in the middle */
+    gap: 10px; /* Space between label and input */
+    flex-wrap: wrap;
 }
 
 .limit-input label {
     font-weight: 600;
     color: var(--text-primary);
     font-size: 0.9rem;
+    white-space: nowrap; /* Prevent label from wrapping */
 }
 
 .limit-input input {
     padding: 12px 15px;
     border: 1px solid var(--border-dark);
     border-radius: 12px;
-    width: 140px;
+    width: 100px; /* Adjusted width */
     font-size: 1rem;
     background: var(--bg-secondary);
     color: var(--text-primary);
     transition: var(--transition);
     font-family: var(--font-body);
+    text-align: center;
 }
 
 .limit-input input:focus {
@@ -934,4 +939,155 @@ header {
 
 [data-theme="dark"] .progress-fill {
     background: var(--primary);
+}
+
+/* Cost Calculator Styles */
+.cost-calculator {
+    background: var(--bg-glass);
+    border-radius: 12px;
+    padding: 20px 15px;
+    text-align: center;
+    box-shadow: var(--shadow);
+    border: 1px solid var(--border-light);
+    backdrop-filter: blur(10px);
+    transition: var(--transition);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+}
+
+.cost-calculator:hover {
+    transform: translateY(-3px);
+    background: var(--bg-secondary);
+}
+
+.cost-label {
+    font-size: 0.85rem;
+    color: var(--text-secondary);
+    font-weight: 500;
+    margin-bottom: 5px;
+}
+
+.cost-value {
+    display: block;
+    font-size: 1.8rem;
+    font-weight: 800;
+    color: #28a745; /* Greenish dollar color */
+    margin-bottom: 5px;
+    line-height: 1;
+}
+
+.cost-formula {
+    font-size: 0.7rem;
+    color: var(--text-secondary);
+    font-weight: 400;
+    margin-top: 5px;
+}
+
+/* Dark mode cost calculator */
+[data-theme="dark"] .cost-calculator {
+    background: var(--bg-glass);
+    border: 1px solid var(--border-light);
+}
+
+[data-theme="dark"] .cost-calculator:hover {
+    background: var(--bg-secondary);
+}
+
+[data-theme="dark"] .cost-value {
+    color: #4caf50; /* Slightly lighter green for dark mode */
+}
+
+/* Separated Search Section */
+.search-section {
+    background: var(--bg-card);
+    border-radius: 16px;
+    padding: 20px;
+    margin-bottom: 30px;
+    box-shadow: var(--shadow);
+    border: 1px solid var(--border-light);
+    backdrop-filter: blur(12px);
+    display: flex;
+    gap: 15px;
+    flex-wrap: wrap;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.search-container {
+    flex: 1;
+    min-width: 250px;
+}
+
+.search-wrapper {
+    width: 100%;
+}
+
+#searchInput {
+    width: 100%;
+    padding: 14px 20px;
+    border: 1px solid var(--border-dark);
+    border-radius: 12px;
+    font-size: 1rem;
+    background: var(--bg-secondary);
+    color: var(--text-primary);
+    transition: var(--transition);
+    font-family: var(--font-body);
+}
+
+#searchInput:focus {
+    outline: none;
+    border-color: var(--primary);
+    box-shadow: 0 0 0 3px rgba(67, 97, 238, 0.2);
+}
+
+.clear-button {
+    padding: 14px 25px;
+    background: var(--danger);
+    color: white;
+    border: none;
+    border-radius: 12px;
+    cursor: pointer;
+    font-size: 1rem;
+    font-weight: 600;
+    transition: var(--transition);
+    box-shadow: var(--shadow);
+    font-family: var(--font-body);
+    white-space: nowrap;
+}
+
+.clear-button:hover {
+    background: #c1121f;
+    transform: translateY(-2px);
+    box-shadow: 0 6px 12px rgba(230, 57, 70, 0.3);
+}
+
+/* Dark mode adjustments */
+[data-theme="dark"] .search-section {
+    background: var(--bg-card);
+    border: 1px solid var(--border-light);
+}
+
+[data-theme="dark"] #searchInput {
+    background: var(--bg-secondary);
+    color: var(--text-primary);
+    border: 1px solid var(--border-dark);
+}
+
+[data-theme="dark"] #searchInput:focus {
+    border-color: var(--primary);
+    box-shadow: 0 0 0 3px rgba(94, 114, 228, 0.3);
+}
+
+/* Responsive adjustments */
+@media (max-width: 768px) {
+    .search-section {
+        flex-direction: column;
+        align-items: stretch;
+    }
+
+    .clear-button {
+        width: 100%;
+    }
 }
