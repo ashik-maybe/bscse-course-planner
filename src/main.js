@@ -223,6 +223,9 @@ class CoursePlanner {
         this.selectedCourses.add(courseCode);
         this.updateStats();
         this.renderCourses();
+
+        // Clear search bar after selecting a course
+        this.clearSearch();
     }
 
     removeCourse(courseCode) {
@@ -269,6 +272,15 @@ class CoursePlanner {
         this.selectedCourses.delete(courseCode);
         this.updateStats();
         this.renderCourses();
+
+        // Clear search bar after removing a course
+        this.clearSearch();
+    }
+
+    // Clear the search input field
+    clearSearch() {
+        this.searchInput.value = '';
+        this.searchInput.dispatchEvent(new Event('input'));
     }
 
     getSelectedElectiveTrails() {
