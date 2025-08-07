@@ -25,14 +25,14 @@ class CoursePlanner {
             thirdTrail: null   // For third elective (3 credits)
         };
 
-// Define alternative course groups
-this.alternativeGroups = [
-    ['POL101', 'POL104'],           // Political Science alternatives
-    ['ECO101', 'ECO104'],           // Economics alternatives
-    ['SOC101', 'ANT101', 'ENV203'], // Social Sciences alternatives
-    ['BEN205', 'ENG115'],           // Language/Literature alternatives
-    ['HIS101', 'HIS103']            // History alternatives
-];
+        // Define alternative course groups
+        this.alternativeGroups = [
+            ['POL101', 'POL104'],           // Political Science alternatives
+            ['ECO101', 'ECO104'],           // Economics alternatives
+            ['SOC101', 'ANT101', 'ENV203'], // Social Sciences alternatives
+            ['BEN205', 'ENG115'],           // Language/Literature alternatives
+            ['HIS101', 'HIS103']            // History alternatives
+        ];
 
         this.initializeElements();
         this.bindEvents();
@@ -56,7 +56,8 @@ this.alternativeGroups = [
         this.typeFilterElement = document.getElementById('typeFilter');
         this.themeToggle = document.getElementById('themeToggle');
         this.selectedCountElement = document.getElementById('selectedCount');
-        this.semesterCostElement = document.getElementById('semesterCost'); // Cost calculator element
+        this.semesterCostElement = document.getElementById('semesterCost');
+        this.clearSearchIcon = document.getElementById('clearSearchIcon'); // Clear search icon
     }
 
     bindEvents() {
@@ -95,6 +96,11 @@ this.alternativeGroups = [
 
         this.themeToggle.addEventListener('click', () => {
             this.toggleTheme();
+        });
+
+        // Clear search icon event
+        this.clearSearchIcon.addEventListener('click', () => {
+            this.clearSearch();
         });
     }
 
@@ -232,7 +238,7 @@ this.alternativeGroups = [
         this.renderCourses();
 
         // Clear search bar after selecting a course
-        this.clearSearch();
+        // this.clearSearch(); // Commented out to keep search text persistent
     }
 
     removeCourse(courseCode) {
@@ -281,13 +287,14 @@ this.alternativeGroups = [
         this.renderCourses();
 
         // Clear search bar after removing a course
-        this.clearSearch();
+        // this.clearSearch(); // Commented out to keep search text persistent
     }
 
     // Clear the search input field
     clearSearch() {
         this.searchInput.value = '';
         this.searchInput.dispatchEvent(new Event('input'));
+        this.searchInput.focus(); // Focus the search input after clearing
     }
 
     getSelectedElectiveTrails() {
