@@ -25,12 +25,14 @@ class CoursePlanner {
             thirdTrail: null   // For third elective (3 credits)
         };
 
-        // Define alternative course groups
-        this.alternativeGroups = [
-            ['POL101', 'POL104'],           // Political Science alternatives
-            ['ECO101', 'ECO104'],           // Economics alternatives
-            ['SOC101', 'ANT101', 'ENV203']  // Social Sciences alternatives
-        ];
+// Define alternative course groups
+this.alternativeGroups = [
+    ['POL101', 'POL104'],           // Political Science alternatives
+    ['ECO101', 'ECO104'],           // Economics alternatives
+    ['SOC101', 'ANT101', 'ENV203'], // Social Sciences alternatives
+    ['BEN205', 'ENG115'],           // Language/Literature alternatives
+    ['HIS101', 'HIS103']            // History alternatives
+];
 
         this.initializeElements();
         this.bindEvents();
