@@ -5,7 +5,9 @@ async function loadCoursesData() {
         if (!response.ok) {
             throw new Error(`HTTP error! status: ${response.status}`);
         }
-        return await response.json();
+        const data = await response.json();
+        // Sort courses alphabetically by course code
+        return data.sort((a, b) => a.code.localeCompare(b.code));
     } catch (error) {
         console.error('Error loading courses ', error);
         return []; // Return empty array if loading fails
