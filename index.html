@@ -4,8 +4,8 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>NSU CSE Semester Planner</title>
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link rel="preconnect" href="https://fonts.googleapis.com  ">
+    <link rel="preconnect" href="https://fonts.gstatic.com  " crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="./src/style.css">
     <link rel="icon" href="src/North_South_University_Monogram.svg" type="image/svg+xml">
@@ -25,6 +25,9 @@
                     </div>
                 </div>
                 <div class="header-actions">
+                    <button id="cgpaCalculator" class="theme-button" title="CGPA Calculator">
+                        <span class="theme-icon">📊</span>
+                    </button>
                     <button id="themeToggle" class="theme-button">
                         <span class="theme-icon">🌙</span>
                     </button>
@@ -119,11 +122,18 @@
 
         <footer class="app-footer">
             <div class="footer-content">
-                <p>Made with 🤖 by <a href="https://github.com/ashik-maybe" target="_blank">@ashik-maybe</a> • <a href="https://github.com/ashik-maybe/bscse-course-planner" target="_blank">Star on GitHub</a></p>
+                <p>Made with 🤖 by <a href="  https://github.com/ashik-maybe  " target="_blank">@ashik-maybe</a> • <a href="https://github.com/ashik-maybe/bscse-course-planner  " target="_blank">Star on GitHub</a></p>
             </div>
         </footer>
     </div>
 
     <script type="module" src="./src/main.js"></script>
+
+    <script>
+        // Add event listener for CGPA Calculator button
+        document.getElementById('cgpaCalculator').addEventListener('click', function() {
+            window.open('./cgpa-calculator.html', '_blank');
+        });
+    </script>
 </body>
 </html>

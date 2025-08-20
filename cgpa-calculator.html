@@ -1,0 +1,1037 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>NSU CGPA Calculator</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="./src/style.css">
+    <link rel="icon" href="src/North_South_University_Monogram.svg" type="image/svg+xml">
+</head>
+<body>
+    <div class="container">
+        <header>
+            <div class="header-content">
+                <div class="logo-container">
+                    <div class="logo-background">
+                        <img src="src/North_South_University_Monogram.svg" alt="NSU Logo" class="nsu-logo">
+                    </div>
+                    <div class="header-text">
+                        <h1>CGPA<span class="highlight">Calculator</span></h1>
+                        <p class="subtitle">North South University</p>
+                        <p class="university-name">PlanItNSU - Academic Progress Tracker</p>
+                    </div>
+                </div>
+                <div class="header-actions">
+                    <button id="themeToggle" class="theme-button">
+                        <span class="theme-icon">🌙</span>
+                    </button>
+                </div>
+            </div>
+        </header>
+
+        <div class="controls">
+            <div class="section-header">
+                <h2>CGPA Calculator</h2>
+                <div class="file-controls">
+                    <button id="importData" class="clear-button">Import Data</button>
+                    <button id="exportData" class="clear-button" style="background: var(--success);">Export Data</button>
+                    <input type="file" id="fileInput" accept=".json" style="display: none;">
+                </div>
+            </div>
+
+            <div class="collapsible-section">
+                <div class="collapsible-header" id="gradeTableToggle">
+                    <h3>Grade Point Conversion ▼</h3>
+                </div>
+                <div class="collapsible-content" id="gradeTableContent">
+                    <div class="grade-table-container">
+                        <table class="grade-table">
+                            <thead>
+                                <tr>
+                                    <th>Numerical Score</th>
+                                    <th>Letter Grade</th>
+                                    <th>Grade Points (Per Credit)</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td>93 and above</td>
+                                    <td>A</td>
+                                    <td>4.0</td>
+                                </tr>
+                                <tr>
+                                    <td>90 - 92</td>
+                                    <td>A-</td>
+                                    <td>3.7</td>
+                                </tr>
+                                <tr>
+                                    <td>87 - 89</td>
+                                    <td>B+</td>
+                                    <td>3.3</td>
+                                </tr>
+                                <tr>
+                                    <td>83 - 86</td>
+                                    <td>B</td>
+                                    <td>3.0</td>
+                                </tr>
+                                <tr>
+                                    <td>80 - 82</td>
+                                    <td>B-</td>
+                                    <td>2.7</td>
+                                </tr>
+                                <tr>
+                                    <td>77 - 79</td>
+                                    <td>C+</td>
+                                    <td>2.3</td>
+                                </tr>
+                                <tr>
+                                    <td>73 - 76</td>
+                                    <td>C</td>
+                                    <td>2.0</td>
+                                </tr>
+                                <tr>
+                                    <td>70 - 72</td>
+                                    <td>C-</td>
+                                    <td>1.7</td>
+                                </tr>
+                                <tr>
+                                    <td>67 - 69</td>
+                                    <td>D+</td>
+                                    <td>1.3</td>
+                                </tr>
+                                <tr>
+                                    <td>60 - 66</td>
+                                    <td>D</td>
+                                    <td>1.0</td>
+                                </tr>
+                                <tr>
+                                    <td>Below 60</td>
+                                    <td>F*</td>
+                                    <td>0.0</td>
+                                </tr>
+                                <tr>
+                                    <td colspan="2">I** (Incomplete)</td>
+                                    <td>0.0</td>
+                                </tr>
+                                <tr>
+                                    <td colspan="2">W** (Withdrawal)</td>
+                                    <td>0.0</td>
+                                </tr>
+                            </tbody>
+                        </table>
+                        <div class="grade-notes">
+                            <p>* Credits for courses with this grade do not apply towards graduation.</p>
+                            <p>** Credits for courses with this grade do not apply towards graduation and they are not accepted in the calculation of the grade point average.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="main-content">
+            <div class="selected-courses-section">
+                <div class="section-header">
+                    <h2>Semester Courses</h2>
+                    <div class="semester-controls">
+                        <select id="yearSelect" class="filter-dropdown">
+                            <option value="">Select Year</option>
+                            <option value="2020">2020</option>
+                            <option value="2021">2021</option>
+                            <option value="2022">2022</option>
+                            <option value="2023">2023</option>
+                            <option value="2024">2024</option>
+                            <option value="2025">2025</option>
+                        </select>
+                        <button id="addSemester" class="clear-button">Add Semester</button>
+                    </div>
+                </div>
+
+                <div id="semestersContainer">
+                    <!-- Semesters will be added here dynamically -->
+                </div>
+            </div>
+
+            <div class="available-courses-section">
+                <div class="section-header">
+                    <h2>CGPA Summary</h2>
+                </div>
+
+                <div class="stats">
+                    <div class="stat-card">
+                        <span class="stat-value" id="totalCredits">0</span>
+                        <span class="stat-label">Total Credits</span>
+                    </div>
+                    <div class="stat-card">
+                        <span class="stat-value" id="totalPoints">0</span>
+                        <span class="stat-label">Total Points</span>
+                    </div>
+                    <div class="stat-card">
+                        <span class="stat-value" id="cgpa">0.00</span>
+                        <span class="stat-label">Current CGPA</span>
+                    </div>
+                </div>
+
+                <div id="semesterSummary">
+                    <!-- Semester summaries will be added here -->
+                </div>
+            </div>
+        </div>
+
+        <footer class="app-footer">
+            <div class="footer-content">
+                <p>Made with 🤖 by <a href="https://github.com/ashik-maybe" target="_blank">@ashik-maybe</a> • <a href="https://github.com/ashik-maybe/bscse-course-planner" target="_blank">Star on GitHub</a></p>
+            </div>
+        </footer>
+    </div>
+
+    <script>
+        // Global courses data
+        let coursesData = [];
+
+        // Load courses data
+        async function loadCoursesData() {
+            try {
+                const response = await fetch('./src/data/courses.json');
+                if (!response.ok) {
+                    throw new Error(`HTTP error! status: ${response.status}`);
+                }
+                const data = await response.json();
+                // Sort courses alphabetically by course code
+                coursesData = data.sort((a, b) => a.code.localeCompare(b.code));
+                return coursesData;
+            } catch (error) {
+                console.error('Error loading courses:', error);
+                return []; // Return empty array if loading fails
+            }
+        }
+
+        // Theme toggle functionality
+        document.getElementById('themeToggle').addEventListener('click', function() {
+            const currentTheme = document.documentElement.getAttribute('data-theme');
+            const newTheme = currentTheme === 'dark' ? 'light' : 'dark';
+            document.documentElement.setAttribute('data-theme', newTheme);
+            localStorage.setItem('theme', newTheme);
+            updateThemeIcon(newTheme);
+        });
+
+        function updateThemeIcon(theme) {
+            const themeIcon = document.querySelector('#themeToggle .theme-icon');
+            themeIcon.textContent = theme === 'dark' ? '☀️' : '🌙';
+        }
+
+        // Load saved theme
+        document.addEventListener('DOMContentLoaded', function() {
+            const savedTheme = localStorage.getItem('theme') || 'light';
+            document.documentElement.setAttribute('data-theme', savedTheme);
+            updateThemeIcon(savedTheme);
+
+            // Collapse grade table by default
+            document.getElementById('gradeTableContent').style.display = 'none';
+
+            // Load courses data
+            loadCoursesData();
+        });
+
+        // Collapsible grade table
+        document.getElementById('gradeTableToggle').addEventListener('click', function() {
+            const content = document.getElementById('gradeTableContent');
+            const toggle = this.querySelector('h3');
+
+            if (content.style.display === 'none') {
+                content.style.display = 'block';
+                toggle.innerHTML = 'Grade Point Conversion ▲';
+            } else {
+                content.style.display = 'none';
+                toggle.innerHTML = 'Grade Point Conversion ▼';
+            }
+        });
+
+        // File handling
+        document.getElementById('importData').addEventListener('click', function() {
+            document.getElementById('fileInput').click();
+        });
+
+        document.getElementById('fileInput').addEventListener('change', function(e) {
+            const file = e.target.files[0];
+            if (file) {
+                const reader = new FileReader();
+                reader.onload = function(e) {
+                    try {
+                        const data = JSON.parse(e.target.result);
+                        loadCGPAData(data);
+                    } catch (error) {
+                        alert('Error parsing JSON file');
+                    }
+                };
+                reader.readAsText(file);
+            }
+        });
+
+        document.getElementById('exportData').addEventListener('click', function() {
+            const data = getCGPAData();
+            const blob = new Blob([JSON.stringify(data, null, 2)], {type: 'application/json'});
+            const url = URL.createObjectURL(blob);
+            const a = document.createElement('a');
+            a.href = url;
+            a.download = 'cgpa-data.json';
+            document.body.appendChild(a);
+            a.click();
+            document.body.removeChild(a);
+            URL.revokeObjectURL(url);
+        });
+
+        // Add semester functionality
+        document.getElementById('addSemester').addEventListener('click', function() {
+            const year = document.getElementById('yearSelect').value;
+            if (!year) {
+                alert('Please select a year first');
+                return;
+            }
+            addSemester(null, year);
+        });
+
+        // Initialize with current year
+        document.addEventListener('DOMContentLoaded', function() {
+            const currentYear = new Date().getFullYear();
+            document.getElementById('yearSelect').value = currentYear;
+        });
+
+        // Create searchable course dropdown
+        function createCourseDropdown(selectedCourseCode = '') {
+            const container = document.createElement('div');
+            container.className = 'course-search-container';
+
+            container.innerHTML = `
+                <div class="search-wrapper">
+                    <input type="text" class="course-search-input" placeholder="Search courses..." value="${selectedCourseCode}">
+                    <div class="course-suggestions"></div>
+                </div>
+                <input type="hidden" class="course-code-hidden" value="${selectedCourseCode}">
+            `;
+
+            return container;
+        }
+
+        // Initialize course search functionality
+        function initCourseSearch(container) {
+            const searchInput = container.querySelector('.course-search-input');
+            const suggestionsContainer = container.querySelector('.course-suggestions');
+            const hiddenInput = container.querySelector('.course-code-hidden');
+
+            // Set initial value if exists
+            if (hiddenInput.value) {
+                const course = coursesData.find(c => c.code === hiddenInput.value);
+                if (course) {
+                    searchInput.value = `${course.code} - ${course.name}`;
+                }
+            }
+
+            searchInput.addEventListener('input', function() {
+                const searchTerm = this.value.toLowerCase();
+
+                if (searchTerm.length < 1) {
+                    suggestionsContainer.innerHTML = '';
+                    suggestionsContainer.style.display = 'none';
+                    return;
+                }
+
+                // Filter courses
+                const filteredCourses = coursesData.filter(course =>
+                    course.code.toLowerCase().includes(searchTerm) ||
+                    course.name.toLowerCase().includes(searchTerm)
+                ).slice(0, 10); // Limit to 10 suggestions
+
+                if (filteredCourses.length === 0) {
+                    suggestionsContainer.innerHTML = '<div class="no-results">No courses found</div>';
+                    suggestionsContainer.style.display = 'block';
+                    return;
+                }
+
+                // Generate suggestions
+                suggestionsContainer.innerHTML = filteredCourses.map(course => `
+                    <div class="suggestion-item" data-code="${course.code}" data-credits="${course.credits}">
+                        <div class="suggestion-code">${course.code}</div>
+                        <div class="suggestion-name">${course.name}</div>
+                        <div class="suggestion-credits">${course.credits} cr</div>
+                    </div>
+                `).join('');
+
+                suggestionsContainer.style.display = 'block';
+
+                // Add click handlers to suggestions
+                suggestionsContainer.querySelectorAll('.suggestion-item').forEach(item => {
+                    item.addEventListener('click', function() {
+                        const code = this.getAttribute('data-code');
+                        const credits = this.getAttribute('data-credits');
+
+                        searchInput.value = `${code} - ${coursesData.find(c => c.code === code)?.name || ''}`;
+                        hiddenInput.value = code;
+                        suggestionsContainer.style.display = 'none';
+
+                        // Update credits field if it exists
+                        const courseCard = container.closest('.course-card');
+                        if (courseCard) {
+                            const creditsInput = courseCard.querySelector('.course-credits');
+                            if (creditsInput) {
+                                creditsInput.value = credits;
+                            }
+                        }
+
+                        // Trigger update
+                        updateCGPA();
+                    });
+                });
+            });
+
+            // Close suggestions when clicking outside
+            document.addEventListener('click', function(e) {
+                if (!container.contains(e.target)) {
+                    suggestionsContainer.style.display = 'none';
+                }
+            });
+        }
+
+        // CGPA Calculator functions
+        function addSemester(semesterData = null, year = null) {
+            const semestersContainer = document.getElementById('semestersContainer');
+            const semesterId = Date.now();
+
+            // Determine semester type
+            let semesterOptions = '';
+            if (year) {
+                semesterOptions = `
+                    <option value="Spring ${year}" ${semesterData?.name === `Spring ${year}` ? 'selected' : ''}>Spring ${year}</option>
+                    <option value="Summer ${year}" ${semesterData?.name === `Summer ${year}` ? 'selected' : ''}>Summer ${year}</option>
+                    <option value="Fall ${year}" ${semesterData?.name === `Fall ${year}` ? 'selected' : ''}>Fall ${year}</option>
+                `;
+            } else {
+                // Default options if no year selected
+                const defaultYear = new Date().getFullYear();
+                semesterOptions = `
+                    <option value="">Select Semester</option>
+                    <option value="Spring ${defaultYear}">Spring ${defaultYear}</option>
+                    <option value="Summer ${defaultYear}">Summer ${defaultYear}</option>
+                    <option value="Fall ${defaultYear}">Fall ${defaultYear}</option>
+                `;
+            }
+
+            const semesterDiv = document.createElement('div');
+            semesterDiv.className = 'semester-section';
+            semesterDiv.innerHTML = `
+                <div class="semester-header">
+                    <select class="semester-name">
+                        ${semesterOptions}
+                    </select>
+                    <button class="remove-semester" data-id="${semesterId}">Remove</button>
+                </div>
+                <div class="courses-grid" id="courses-${semesterId}">
+                    ${semesterData?.courses?.map(course => {
+                        // Create course dropdown for existing courses
+                        const courseContainer = createCourseDropdown(course.code);
+                        const tempDiv = document.createElement('div');
+                        tempDiv.appendChild(courseContainer);
+                        const courseDropdownHTML = tempDiv.innerHTML;
+
+                        return `
+                            <div class="course-card">
+                                <div class="course-header">
+                                    ${courseDropdownHTML}
+                                    <input type="number" class="course-credits" placeholder="Credits" min="0" step="0.5" value="${course.credits || 3}">
+                                </div>
+                                <div class="course-details">
+                                    <select class="course-grade">
+                                        <option value="">Select Grade</option>
+                                        <option value="4.0" ${course.grade === '4.0' ? 'selected' : ''}>A (4.0)</option>
+                                        <option value="3.7" ${course.grade === '3.7' ? 'selected' : ''}>A- (3.7)</option>
+                                        <option value="3.3" ${course.grade === '3.3' ? 'selected' : ''}>B+ (3.3)</option>
+                                        <option value="3.0" ${course.grade === '3.0' ? 'selected' : ''}>B (3.0)</option>
+                                        <option value="2.7" ${course.grade === '2.7' ? 'selected' : ''}>B- (2.7)</option>
+                                        <option value="2.3" ${course.grade === '2.3' ? 'selected' : ''}>C+ (2.3)</option>
+                                        <option value="2.0" ${course.grade === '2.0' ? 'selected' : ''}>C (2.0)</option>
+                                        <option value="1.7" ${course.grade === '1.7' ? 'selected' : ''}>C- (1.7)</option>
+                                        <option value="1.3" ${course.grade === '1.3' ? 'selected' : ''}>D+ (1.3)</option>
+                                        <option value="1.0" ${course.grade === '1.0' ? 'selected' : ''}>D (1.0)</option>
+                                        <option value="0.0" ${course.grade === '0.0' ? 'selected' : ''}>F (0.0)</option>
+                                        <option value="I" ${course.grade === 'I' ? 'selected' : ''}>I (Incomplete)</option>
+                                        <option value="W" ${course.grade === 'W' ? 'selected' : ''}>W (Withdrawal)</option>
+                                    </select>
+                                    <button class="remove-course">Remove</button>
+                                </div>
+                            </div>
+                        `;
+                    }).join('') || ''}
+                </div>
+                <button class="add-course" data-id="${semesterId}">Add Course</button>
+            `;
+
+            semestersContainer.appendChild(semesterDiv);
+
+            // Initialize course search for existing courses
+            const courseCards = semesterDiv.querySelectorAll('.course-card');
+            courseCards.forEach(card => {
+                const searchContainer = card.querySelector('.course-search-container');
+                if (searchContainer) {
+                    initCourseSearch(searchContainer);
+                }
+            });
+
+            // Add event listeners
+            semesterDiv.querySelector('.remove-semester').addEventListener('click', function() {
+                semestersContainer.removeChild(semesterDiv);
+                updateCGPA();
+            });
+
+            semesterDiv.querySelector('.add-course').addEventListener('click', function() {
+                addCourse(semesterId);
+            });
+
+            // Add event listeners to existing courses
+            courseCards.forEach(card => {
+                card.querySelector('.remove-course').addEventListener('click', function() {
+                    card.remove();
+                    updateCGPA();
+                });
+
+                const inputs = card.querySelectorAll('.course-credits, .course-grade');
+                inputs.forEach(input => {
+                    input.addEventListener('input', updateCGPA);
+                });
+            });
+
+            // Add input listeners to semester name
+            semesterDiv.querySelector('.semester-name').addEventListener('change', updateCGPA);
+        }
+
+        function addCourse(semesterId) {
+            const coursesContainer = document.getElementById(`courses-${semesterId}`);
+
+            const courseDiv = document.createElement('div');
+            courseDiv.className = 'course-card';
+
+            // Create course search dropdown
+            const courseSearchContainer = createCourseDropdown();
+            const tempDiv = document.createElement('div');
+            tempDiv.appendChild(courseSearchContainer);
+            const courseDropdownHTML = tempDiv.innerHTML;
+
+            courseDiv.innerHTML = `
+                <div class="course-header">
+                    ${courseDropdownHTML}
+                    <input type="number" class="course-credits" placeholder="Credits" min="0" step="0.5" value="3">
+                </div>
+                <div class="course-details">
+                    <select class="course-grade">
+                        <option value="">Select Grade</option>
+                        <option value="4.0">A (4.0)</option>
+                        <option value="3.7">A- (3.7)</option>
+                        <option value="3.3">B+ (3.3)</option>
+                        <option value="3.0">B (3.0)</option>
+                        <option value="2.7">B- (2.7)</option>
+                        <option value="2.3">C+ (2.3)</option>
+                        <option value="2.0">C (2.0)</option>
+                        <option value="1.7">C- (1.7)</option>
+                        <option value="1.3">D+ (1.3)</option>
+                        <option value="1.0">D (1.0)</option>
+                        <option value="0.0">F (0.0)</option>
+                        <option value="I">I (Incomplete)</option>
+                        <option value="W">W (Withdrawal)</option>
+                    </select>
+                    <button class="remove-course">Remove</button>
+                </div>
+            `;
+
+            coursesContainer.appendChild(courseDiv);
+
+            // Initialize course search
+            const searchContainer = courseDiv.querySelector('.course-search-container');
+            initCourseSearch(searchContainer);
+
+            // Add event listeners
+            courseDiv.querySelector('.remove-course').addEventListener('click', function() {
+                coursesContainer.removeChild(courseDiv);
+                updateCGPA();
+            });
+
+            const inputs = courseDiv.querySelectorAll('.course-credits, .course-grade');
+            inputs.forEach(input => {
+                input.addEventListener('input', updateCGPA);
+            });
+        }
+
+        function updateCGPA() {
+            const semesters = document.querySelectorAll('.semester-section');
+            let totalCredits = 0;
+            let totalPoints = 0;
+
+            // Clear previous summary
+            document.getElementById('semesterSummary').innerHTML = '';
+
+            semesters.forEach(semester => {
+                const semesterName = semester.querySelector('.semester-name').value || 'Unnamed Semester';
+                let semesterCredits = 0;
+                let semesterPoints = 0;
+
+                const courses = semester.querySelectorAll('.course-card');
+                courses.forEach(course => {
+                    const credits = parseFloat(course.querySelector('.course-credits').value) || 0;
+                    const grade = course.querySelector('.course-grade').value;
+                    const courseCode = course.querySelector('.course-code-hidden')?.value ||
+                                      course.querySelector('.course-search-input')?.value.split(' - ')[0] || '';
+
+                    // Only count courses with valid grades (not I or W)
+                    if (grade && grade !== 'I' && grade !== 'W') {
+                        const points = parseFloat(grade) || 0;
+                        semesterCredits += credits;
+                        semesterPoints += credits * points;
+                    }
+                });
+
+                // Calculate semester GPA
+                const semesterGPA = semesterCredits > 0 ? (semesterPoints / semesterCredits).toFixed(2) : '0.00';
+
+                // Add to total
+                totalCredits += semesterCredits;
+                totalPoints += semesterPoints;
+
+                // Add to summary
+                const summaryDiv = document.createElement('div');
+                summaryDiv.className = 'semester-summary';
+                summaryDiv.innerHTML = `
+                    <h3>${semesterName}</h3>
+                    <div class="semester-stats">
+                        <span>Credits: ${semesterCredits}</span>
+                        <span>Points: ${semesterPoints.toFixed(1)}</span>
+                        <span>GPA: ${semesterGPA}</span>
+                    </div>
+                `;
+                document.getElementById('semesterSummary').appendChild(summaryDiv);
+            });
+
+            // Calculate overall CGPA
+            const cgpa = totalCredits > 0 ? (totalPoints / totalCredits).toFixed(2) : '0.00';
+
+            // Update display
+            document.getElementById('totalCredits').textContent = totalCredits;
+            document.getElementById('totalPoints').textContent = totalPoints.toFixed(1);
+            document.getElementById('cgpa').textContent = cgpa;
+        }
+
+        function getCGPAData() {
+            const semesters = [];
+            document.querySelectorAll('.semester-section').forEach(semester => {
+                const semesterData = {
+                    name: semester.querySelector('.semester-name').value,
+                    courses: []
+                };
+
+                semester.querySelectorAll('.course-card').forEach(course => {
+                    const courseCode = course.querySelector('.course-code-hidden')?.value || '';
+                    const courseDisplay = course.querySelector('.course-search-input')?.value || '';
+                    const courseCodeFinal = courseCode || courseDisplay.split(' - ')[0] || '';
+
+                    semesterData.courses.push({
+                        code: courseCodeFinal,
+                        credits: parseFloat(course.querySelector('.course-credits').value) || 0,
+                        grade: course.querySelector('.course-grade').value
+                    });
+                });
+
+                semesters.push(semesterData);
+            });
+
+            return { semesters };
+        }
+
+        function loadCGPAData(data) {
+            // Clear existing semesters
+            document.getElementById('semestersContainer').innerHTML = '';
+
+            // Load semesters
+            if (data.semesters) {
+                data.semesters.forEach(semester => {
+                    addSemester(semester);
+                });
+            }
+
+            updateCGPA();
+        }
+    </script>
+
+    <style>
+        .grade-table-container {
+            overflow-x: auto;
+            margin-bottom: 20px;
+        }
+
+        .grade-table {
+            width: 100%;
+            border-collapse: collapse;
+            background: var(--bg-card);
+            border-radius: 12px;
+            overflow: hidden;
+            box-shadow: var(--shadow);
+        }
+
+        .grade-table th,
+        .grade-table td {
+            padding: 12px 15px;
+            text-align: left;
+            border-bottom: 1px solid var(--border-dark);
+        }
+
+        .grade-table th {
+            background: var(--primary);
+            color: white;
+            font-weight: 600;
+        }
+
+        .grade-table tbody tr:hover {
+            background: var(--bg-glass);
+        }
+
+        .grade-notes {
+            margin-top: 15px;
+            padding: 15px;
+            background: var(--bg-glass);
+            border-radius: 12px;
+            border: 1px solid var(--border-light);
+        }
+
+        .grade-notes p {
+            margin: 5px 0;
+            font-size: 0.9rem;
+            color: var(--text-secondary);
+        }
+
+        .file-controls {
+            display: flex;
+            gap: 15px;
+            flex-wrap: wrap;
+        }
+
+        .semester-controls {
+            display: flex;
+            gap: 15px;
+            flex-wrap: wrap;
+            align-items: center;
+        }
+
+        .semester-section {
+            background: var(--bg-card);
+            border-radius: 16px;
+            padding: 20px;
+            margin-bottom: 20px;
+            box-shadow: var(--shadow);
+            border: 1px solid var(--border-light);
+        }
+
+        .semester-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 15px;
+            flex-wrap: wrap;
+            gap: 10px;
+        }
+
+        .semester-name {
+            flex: 1;
+            min-width: 200px;
+            padding: 10px 15px;
+            border: 1px solid var(--border-dark);
+            border-radius: 12px;
+            background: var(--bg-secondary);
+            color: var(--text-primary);
+            font-family: var(--font-body);
+            font-size: 1rem;
+        }
+
+        .semester-name:focus {
+            outline: none;
+            border-color: var(--primary);
+            box-shadow: 0 0 0 3px rgba(67, 97, 238, 0.2);
+        }
+
+        .remove-semester {
+            padding: 8px 15px;
+            background: var(--danger);
+            color: white;
+            border: none;
+            border-radius: 12px;
+            cursor: pointer;
+            font-size: 0.9rem;
+            font-weight: 600;
+            transition: var(--transition);
+        }
+
+        .remove-semester:hover {
+            background: #c1121f;
+            transform: translateY(-2px);
+        }
+
+        .course-card {
+            background: var(--bg-secondary);
+            border-radius: 12px;
+            padding: 15px;
+            margin-bottom: 15px;
+            border: 1px solid var(--border-light);
+            position: relative;
+        }
+
+        .course-header {
+            display: flex;
+            gap: 10px;
+            margin-bottom: 10px;
+            flex-wrap: wrap;
+        }
+
+        .course-search-container {
+            flex: 1;
+            min-width: 150px;
+            position: relative;
+        }
+
+        .search-wrapper {
+            position: relative;
+        }
+
+        .course-search-input {
+            width: 100%;
+            padding: 8px 12px;
+            border: 1px solid var(--border-dark);
+            border-radius: 8px;
+            background: var(--bg-glass);
+            color: var(--text-primary);
+            font-family: var(--font-body);
+            font-size: 0.9rem;
+        }
+
+        .course-search-input:focus {
+            outline: none;
+            border-color: var(--primary);
+            box-shadow: 0 0 0 2px rgba(67, 97, 238, 0.2);
+        }
+
+        .course-suggestions {
+            position: absolute;
+            top: 100%;
+            left: 0;
+            right: 0;
+            background: var(--bg-secondary);
+            border: 1px solid var(--border-dark);
+            border-radius: 8px;
+            max-height: 200px;
+            overflow-y: auto;
+            z-index: 1000;
+            display: none;
+            box-shadow: var(--shadow);
+        }
+
+        .suggestion-item {
+            padding: 10px;
+            cursor: pointer;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            border-bottom: 1px solid var(--border-light);
+        }
+
+        .suggestion-item:last-child {
+            border-bottom: none;
+        }
+
+        .suggestion-item:hover {
+            background: var(--bg-glass);
+        }
+
+        .suggestion-code {
+            font-weight: 600;
+            color: var(--primary);
+        }
+
+        .suggestion-name {
+            flex: 1;
+            margin: 0 10px;
+            font-size: 0.85rem;
+            color: var(--text-secondary);
+        }
+
+        .suggestion-credits {
+            font-size: 0.8rem;
+            color: var(--text-secondary);
+            background: var(--bg-glass);
+            padding: 2px 6px;
+            border-radius: 4px;
+        }
+
+        .no-results {
+            padding: 10px;
+            text-align: center;
+            color: var(--text-secondary);
+            font-style: italic;
+        }
+
+        .course-credits {
+            width: 80px;
+            padding: 8px 12px;
+            border: 1px solid var(--border-dark);
+            border-radius: 8px;
+            background: var(--bg-glass);
+            color: var(--text-primary);
+            font-family: var(--font-body);
+            font-size: 0.9rem;
+        }
+
+        .course-credits:focus {
+            outline: none;
+            border-color: var(--primary);
+            box-shadow: 0 0 0 2px rgba(67, 97, 238, 0.2);
+        }
+
+        .course-details {
+            display: flex;
+            gap: 10px;
+            align-items: center;
+            flex-wrap: wrap;
+        }
+
+        .course-grade {
+            flex: 1;
+            min-width: 150px;
+            padding: 8px 12px;
+            border: 1px solid var(--border-dark);
+            border-radius: 8px;
+            background: var(--bg-glass);
+            color: var(--text-primary);
+            font-family: var(--font-body);
+            font-size: 0.9rem;
+        }
+
+        .course-grade:focus {
+            outline: none;
+            border-color: var(--primary);
+            box-shadow: 0 0 0 2px rgba(67, 97, 238, 0.2);
+        }
+
+        .remove-course {
+            padding: 6px 12px;
+            background: var(--danger);
+            color: white;
+            border: none;
+            border-radius: 8px;
+            cursor: pointer;
+            font-size: 0.8rem;
+            font-weight: 600;
+            transition: var(--transition);
+        }
+
+        .remove-course:hover {
+            background: #c1121f;
+        }
+
+        .add-course {
+            padding: 10px 15px;
+            background: var(--success);
+            color: white;
+            border: none;
+            border-radius: 12px;
+            cursor: pointer;
+            font-size: 0.9rem;
+            font-weight: 600;
+            transition: var(--transition);
+            width: 100%;
+        }
+
+        .add-course:hover {
+            background: #3aa7c9;
+            transform: translateY(-2px);
+        }
+
+        .semester-summary {
+            background: var(--bg-card);
+            border-radius: 12px;
+            padding: 15px;
+            margin-bottom: 15px;
+            border: 1px solid var(--border-light);
+        }
+
+        .semester-summary h3 {
+            margin: 0 0 10px 0;
+            color: var(--primary);
+            font-size: 1.2rem;
+        }
+
+        .semester-stats {
+            display: flex;
+            gap: 20px;
+            flex-wrap: wrap;
+        }
+
+        .semester-stats span {
+            font-weight: 600;
+            color: var(--text-primary);
+        }
+
+        .collapsible-header {
+            cursor: pointer;
+            padding: 15px;
+            background: var(--bg-card);
+            border-radius: 12px;
+            margin-bottom: 10px;
+            border: 1px solid var(--border-light);
+            transition: var(--transition);
+        }
+
+        .collapsible-header:hover {
+            background: var(--bg-glass);
+        }
+
+        .collapsible-header h3 {
+            margin: 0;
+            color: var(--primary);
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+        }
+
+        .collapsible-content {
+            transition: all 0.3s ease;
+        }
+
+        @media (max-width: 768px) {
+            .file-controls {
+                flex-direction: column;
+            }
+
+            .semester-controls {
+                flex-direction: column;
+                align-items: stretch;
+            }
+
+            .semester-header {
+                flex-direction: column;
+                align-items: stretch;
+            }
+
+            .course-header,
+            .course-details {
+                flex-direction: column;
+            }
+
+            .course-search-container,
+            .course-credits,
+            .course-grade {
+                width: 100%;
+            }
+
+            .semester-stats {
+                flex-direction: column;
+                gap: 5px;
+            }
+        }
+    </style>
+</body>
+</html>
