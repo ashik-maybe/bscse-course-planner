@@ -17,6 +17,7 @@ async function loadCoursesData() {
 class CoursePlanner {
   constructor(coursesData) {
     this.courses = coursesData;
+    // Initialize selectedCourses as an empty Set
     this.selectedCourses = new Set();
     this.maxCredits = 14;
     this.maxCourses = 8;
@@ -39,8 +40,45 @@ class CoursePlanner {
     this.initializeElements();
     this.bindEvents();
     this.loadTheme();
+    // Load previously selected courses from localStorage
+    this.loadSelectedCourses();
     this.renderCourses();
     this.updateStats();
+  }
+
+  // Method to load selected courses from localStorage
+  loadSelectedCourses() {
+    try {
+      const savedCoursesJSON = localStorage.getItem("selectedCourses");
+      if (savedCoursesJSON) {
+        const savedCourses = JSON.parse(savedCoursesJSON);
+        // Validate that the saved data is an array before using it
+        if (Array.isArray(savedCourses)) {
+          // Clear the current set and add the loaded course codes
+          this.selectedCourses = new Set(savedCourses);
+        } else {
+          console.warn(
+            "Saved selectedCourses in localStorage is not an array, initializing as empty."
+          );
+          this.selectedCourses = new Set(); // Initialize as empty if invalid
+        }
+      }
+      // If no item is found in localStorage, selectedCourses remains an empty Set as initialized in the constructor
+    } catch (error) {
+      console.error("Error loading selected courses from localStorage:", error);
+      this.selectedCourses = new Set(); // Fallback to empty set on error
+    }
+  }
+
+  // Method to save selected courses to localStorage
+  saveSelectedCourses() {
+    try {
+      // Convert the Set to an Array before stringifying
+      const coursesArray = Array.from(this.selectedCourses);
+      localStorage.setItem("selectedCourses", JSON.stringify(coursesArray));
+    } catch (error) {
+      console.error("Error saving selected courses to localStorage:", error);
+    }
   }
 
   initializeElements() {
@@ -84,6 +122,8 @@ class CoursePlanner {
       this.electiveTrailSelections = { firstTrail: null, thirdTrail: null };
       this.updateStats();
       this.renderCourses();
+      // Save the cleared state to localStorage
+      this.saveSelectedCourses();
     });
 
     this.categoryFilterElement.addEventListener("change", (e) => {
@@ -282,6 +322,8 @@ class CoursePlanner {
     this.selectedCourses.add(courseCode);
     this.updateStats();
     this.renderCourses();
+    // Save the updated set to localStorage
+    this.saveSelectedCourses();
 
     // Clear search bar after selecting a course
     // this.clearSearch(); // Commented out to keep search text persistent
@@ -335,6 +377,8 @@ class CoursePlanner {
     this.selectedCourses.delete(courseCode);
     this.updateStats();
     this.renderCourses();
+    // Save the updated set to localStorage
+    this.saveSelectedCourses();
 
     // Clear search bar after removing a course
     // this.clearSearch(); // Commented out to keep search text persistent
