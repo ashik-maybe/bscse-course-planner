@@ -1,17 +1,17 @@
 // Load courses data using fetch instead of import assertion
 async function loadCoursesData() {
-    try {
-        const response = await fetch('./src/data/courses.json');
-        if (!response.ok) {
-            throw new Error(`HTTP error! status: ${response.status}`);
-        }
-        const data = await response.json();
-        // Sort courses alphabetically by course code
-        return data.sort((a, b) => a.code.localeCompare(b.code));
-    } catch (error) {
-        console.error('Error loading courses ', error);
-        return []; // Return empty array if loading fails
+  try {
+    const response = await fetch("./src/data/courses.json");
+    if (!response.ok) {
+      throw new Error(`HTTP error! status: ${response.status}`);
     }
+    const data = await response.json();
+    // Sort courses alphabetically by course code
+    return data.sort((a, b) => a.code.localeCompare(b.code));
+  } catch (error) {
+    console.error("Error loading courses ", error);
+    return []; // Return empty array if loading fails
+  }
 }
 
 class CoursePlanner {
@@ -138,7 +138,6 @@ class CoursePlanner {
     return this.selectedCourses.size;
   }
 
-  // Inside the CoursePlanner class definition
   updateStats() {
     const selectedCredits = this.getSelectedCredits();
     const selectedCourses = this.getSelectedCourseCount();
@@ -153,12 +152,16 @@ class CoursePlanner {
       selectedCourses !== 1 ? "s" : ""
     }`;
 
-    // --- Updated Cost Calculation with Conditional Fees ---
-    const fixedFees = 3000 + 1500; // Student Activity Fee + Library Fee (Always applied)
+    // --- Final & Corrected Cost Calculation ---
+    // Define fee constants for easy modification
+    const STUDENT_ACTIVITY_FEE = 3000; // Student Activity Fee (Always applied)
+    const LIBRARY_FEE = 1500; // Library Fee (Always applied)
+    const COMPUTER_LAB_FEE = 2500; // Applied if ANY non-science lab course is taken
+    const SCIENCE_LAB_FEE = 2500; // Applied if ANY of the 4 specific science labs is taken
 
     // Determine if Computer Lab Fee applies
     // Applied if ANY selected course is a 'lab' type BUT NOT one of the specific science labs
-    const scienceLabCodes = new Set([
+    const SCIENCE_LAB_CODES = new Set([
       "BIO103L",
       "CHE101L",
       "PHY107L",
@@ -167,23 +170,28 @@ class CoursePlanner {
     const hasComputerLab = Array.from(this.selectedCourses).some((code) => {
       const course = this.courses.find((c) => c.code === code);
       return (
-        course && course.type === "lab" && !scienceLabCodes.has(course.code)
+        course && course.type === "lab" && !SCIENCE_LAB_CODES.has(course.code)
       );
     });
-    const computerLabFee = hasComputerLab ? 2500 : 0;
+    const computerLabFeeApplicable = hasComputerLab ? COMPUTER_LAB_FEE : 0;
 
     // Determine if Science Lab Fee applies
     // Applied if ANY selected course is one of the specific science labs
     const hasScienceLab = Array.from(this.selectedCourses).some((code) =>
-      scienceLabCodes.has(code)
+      SCIENCE_LAB_CODES.has(code)
     );
-    const scienceLabFee = hasScienceLab ? 2500 : 0;
+    const scienceLabFeeApplicable = hasScienceLab ? SCIENCE_LAB_FEE : 0;
 
-    const semesterCost =
-      selectedCredits * 6500 + fixedFees + computerLabFee + scienceLabFee;
-    // --- End Updated Cost Calculation ---
+    // Calculate total semester cost
+    const tuitionCost = selectedCredits * 6500; // 6500 TK per credit
+    const fixedFees = STUDENT_ACTIVITY_FEE + LIBRARY_FEE; // Always applied
+    const conditionalFees = computerLabFeeApplicable + scienceLabFeeApplicable; // Conditional fees
 
+    const semesterCost = tuitionCost + fixedFees + conditionalFees;
+
+    // Update the display
     this.semesterCostElement.textContent = `৳${semesterCost.toLocaleString()}`;
+    // --- End Final Cost Calculation ---
 
     // Update warning states
     if (remainingCredits <= 3) {
@@ -691,18 +699,18 @@ class CoursePlanner {
 }
 
 // Initialize the app when DOM is loaded
-document.addEventListener('DOMContentLoaded', async () => {
-    const coursesData = await loadCoursesData();
-    if (coursesData && coursesData.length > 0) {
-        new CoursePlanner(coursesData);
-    } else {
-        console.error('Failed to load course data');
-        // Show error message to user
-        document.body.innerHTML = `
+document.addEventListener("DOMContentLoaded", async () => {
+  const coursesData = await loadCoursesData();
+  if (coursesData && coursesData.length > 0) {
+    new CoursePlanner(coursesData);
+  } else {
+    console.error("Failed to load course data");
+    // Show error message to user
+    document.body.innerHTML = `
             <div style="text-align: center; padding: 50px; font-family: Arial, sans-serif;">
                 <h1>Error Loading Course Data</h1>
                 <p>Unable to load course information. Please check your internet connection and try again.</p>
             </div>
         `;
-    }
+  }
 });
